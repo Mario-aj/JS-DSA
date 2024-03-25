@@ -4,38 +4,34 @@
  * The string will be always in lower case and will never be empty.
  * The string will contain letters, numbers and special characters.
  */
-
 function isAnagram(str1, str2) {
   if (str1.length !== str2.length) {
     return false;
   }
 
-  let freqCounter = {};
+  const frequencyCounter = createFrequencyCounter(str1);
 
-  // O(n)
-  for (let val of str1) {
-    if (freqCounter[val]) {
-      freqCounter[val] += 1; // O(1)
-    } else {
-      freqCounter[val] = 1; // O(1)
-    }
-  }
-
-  // O(n)
   for (let val of str2) {
-    if (freqCounter[val]) {
-      freqCounter[val] -= 1; // O(1)
-    } else {
+    if (!frequencyCounter[val]) {
       return false;
     }
+    frequencyCounter[val] -= 1;
   }
 
   return true;
 }
 
-// time complexity: O(n)
-// space complexity: O(n)
+function createFrequencyCounter(str) {
+  const freqCounter = {};
 
+  for (let val of str) {
+    freqCounter[val] = (freqCounter[val] || 0) + 1;
+  }
+
+  return freqCounter;
+}
+
+// Test cases
 console.log(isAnagram("mario", "armio")); // true
 console.log(isAnagram(" ", " ")); // true
 console.log(isAnagram("carro", "arco")); // false
@@ -46,3 +42,4 @@ console.log(isAnagram("rat", "car")); // false
 console.log(isAnagram("awesome", "awesom")); // false
 console.log(isAnagram("qwerty", "qeywrt")); // true
 console.log(isAnagram("texttwisttime", "timetwisttext")); // true
+
