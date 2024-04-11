@@ -32,6 +32,17 @@ function nestedEvenSum(obj) {
   return result;
 }
 
+function nestedEvenSumTeacherSoluction(obj, sum = 0) {
+  for (var key in obj) {
+    if (typeof obj[key] === "object") {
+      sum += nestedEvenSumTeacherSoluction(obj[key]);
+    } else if (typeof obj[key] === "number" && obj[key] % 2 === 0) {
+      sum += obj[key];
+    }
+  }
+  return sum;
+}
+
 let obj1 = {
   outer: 2,
   obj: {

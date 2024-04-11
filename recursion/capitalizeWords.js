@@ -9,11 +9,7 @@
 function capitalizeWords(arr) {
   if (!arr.length) return [];
 
-  let result = [];
-
-  let wordToCapitalize = arr[0];
-
-  result.push(wordToCapitalize.toUpperCase());
+  let result = [arr[0].toUpperCase()];
 
   return result.concat(capitalizeWords(arr.slice(1)));
 }

@@ -8,12 +8,9 @@ function capitalizeFirst(arr) {
   // add whatever parameters you deem necessary - good luck!
   if (!arr.length) return [];
 
-  let results = [];
-  let str = arr[0];
+  let firstLetter = arr[0].charAt(0).toUpperCase();
 
-  let firstLetter = str.charAt(0).toUpperCase();
-
-  results.push(firstLetter + str.slice(1));
+  let results = [firstLetter + arr[0].slice(1)];
 
   return results.concat(capitalizeFirst(arr.slice(1)));
 }
