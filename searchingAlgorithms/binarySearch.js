@@ -25,10 +25,28 @@ function binarySearch(arr = [], value) {
   return -1;
 }
 
-console.log(binarySearch([1, 2, 3, 4, 5], 2)); // 1
-console.log(binarySearch([1, 2, 3, 4, 5], 3)); // 2
-console.log(binarySearch([1, 2, 3, 4, 5], 5)); // 4
-console.log(binarySearch([1, 2, 3, 4, 5], 6)); // -1
+function recursiveBinarySearch(arr, target, left = 0, right = arr.length - 1) {
+  if (!arr.length || left > right) {
+    return -1;
+  }
+
+  let middle = Math.floor((left + right) / 2);
+
+  if (arr[middle] < target) {
+    return recursiveBinarySearch(arr, target, ++middle, right);
+  }
+
+  if (arr[middle] > target) {
+    return recursiveBinarySearch(arr, target, left, --middle);
+  }
+
+  return middle;
+}
+
+console.log(recursiveBinarySearch([1, 2, 3, 4, 5], 2)); // 1
+console.log(recursiveBinarySearch([1, 2, 3, 4, 5], 3)); // 2
+console.log(recursiveBinarySearch([1, 2, 3, 4, 5], 5)); // 4
+console.log(recursiveBinarySearch([1, 2, 3, 4, 5], 6)); // -1
 console.log(
   binarySearch(
     [
