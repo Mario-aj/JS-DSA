@@ -1,20 +1,24 @@
-function binarySearch(arr, value) {
+/**
+ * Binary Search Exercise
+ * Write a function called binarySearch which accepts a sorted array and a value and
+ * returns the index at which the value exists. Otherwise, return -1.
+ */
+
+function binarySearch(arr = [], value) {
   let left = 0;
   let right = arr.length - 1;
 
-  while (left < right) {
+  while (left <= right) {
     let middle = Math.floor((left + right) / 2);
 
     let current = arr[middle];
-
-    if (current === value) {
-      return middle;
-    }
 
     if (current < value) {
       left = ++middle;
     } else if (current > value) {
       right = --middle;
+    } else {
+      return middle;
     }
   }
 
