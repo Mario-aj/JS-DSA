@@ -1,3 +1,15 @@
+/**
+ * Bubble sort algorithm.
+ *
+ * The idea.
+ * Loop over the array elements unitl the end of the array.
+ * Create a inner loop wich will going untill the size of the array - 1 - i (i represents the index of the external loop)
+ * inside the inner loop, verify if arr[j] > arr[j+1], if so, mmake a swap.
+ * One more thing to make it better, is to add a flag, which will control whether was made a swap or not,
+ * to avoid unnecessary loop sections, once the array is already sorted.
+ * Then, return the sorted array.
+ */
+
 function sort(arr) {
   for (let i = arr.length; i > 0; i--) {
     let noSwap = true;
