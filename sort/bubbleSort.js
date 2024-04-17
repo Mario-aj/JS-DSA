@@ -10,47 +10,47 @@
  * Then, return the sorted array.
  */
 
-function sort (arr) {
+function sort(arr) {
   for (let i = arr.length; i > 0; i--) {
-    let noSwap = true
+    let noSwap = true;
 
     for (let j = 0; j < i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
-        swap(arr, j)
-        noSwap = false
+        swap(arr, j);
+        noSwap = false;
       }
     }
 
-    if (noSwap) break
+    if (noSwap) break;
   }
-  return arr
+  return arr;
 }
 
-function swap (arr, j) {
-  let temp = arr[j]
-  arr[j] = arr[j + 1]
-  arr[j + 1] = temp
+function swap(arr, j) {
+  let temp = arr[j];
+  arr[j] = arr[j + 1];
+  arr[j + 1] = temp;
 }
 
-function bubbleSort (arr) {
+function bubbleSort(arr) {
   // 1,5,2,6,4 // 1,2,5,4,6 // 1,2,4,5,6 // 1,2,4,5,6
   for (let i = 0; i < arr.length; i++) {
-    let noSwap = true
+    let noSwap = true;
     for (let j = 0; j < arr.length - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
-        swap(arr, j)
-        noSwap = false
+        swap(arr, j);
+        noSwap = false;
       }
     }
 
-    if (noSwap) break
+    if (noSwap) break;
   }
 }
 
-console.log(sort([8, 5, 9, 10, 2, 15, 4]))
+console.log(sort([8, 5, 9, 10, 2, 15, 4]));
 
-const unsortedArray = [1, 5, 2, 6, 4]
+const unsortedArray = [1, 5, 2, 6, 4];
 
-console.log('Unsorted: ', unsortedArray)
-bubbleSort(unsortedArray)
-console.log('Sorted: ', unsortedArray)
+console.log("Unsorted: ", unsortedArray);
+bubbleSort(unsortedArray);
+console.log("Sorted: ", unsortedArray);
