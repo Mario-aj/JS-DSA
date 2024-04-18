@@ -35,7 +35,6 @@ function selectionSort(arr) {
       noSwap = false;
     }
 
-    console.log({ noSwap, min, i });
     if (noSwap && i !== 0) break;
   }
 }
