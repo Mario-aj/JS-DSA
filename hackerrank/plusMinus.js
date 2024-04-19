@@ -53,23 +53,21 @@ The proportions of occurrence are positive: , negative:  and zeros:
  */
 
 function plusMinus(arr) {
-  let freqCounter = {
-    positive: 0,
-    negative: 0,
-    zero: 0,
-  };
+  let zero = 0;
+  let positive = 0;
+  let negative = 0;
 
   for (let element of arr) {
     if (element > 0) {
-      freqCounter["positive"]++;
+      positive++;
     } else if (element < 0) {
-      freqCounter["negative"]++;
-    } else freqCounter["zero"]++;
+      negative++;
+    } else zero++;
   }
 
-  Object.values(freqCounter).forEach((val) => {
-    console.log((val / arr.length).toFixed(6));
-  });
+  console.log((positive / arr.length).toFixed(6));
+  console.log((negative / arr.length).toFixed(6));
+  console.log((zero / arr.length).toFixed(6));
 }
 
 plusMinus([1, -2, -7, 9, 1, -8, -5]);
