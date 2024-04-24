@@ -144,6 +144,40 @@ function bigSortingWithInsertionSort(arr = []) {
   }
 }
 
+function merge(arr1 = [], arr2 = []) {
+  let results = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) {
+      results.push(arr1[i++]);
+    } else {
+      results.push(arr2[j++]);
+    }
+  }
+
+  while (i < arr1[i]) {
+    results.push(arr1[i++]);
+  }
+
+  while (j < arr2.length) {
+    results.push(arr2[j++]);
+  }
+
+  return results;
+}
+
+function mergeSort(arr = []) {
+  if (arr.length <= 1) return arr;
+
+  let middle = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, middle));
+  let right = mergeSort(arr.slice(middle));
+
+  return merge(left, right);
+}
+
 // let unsortedArray = [1, 200, 150, 3];
 // bigSortingWithBubbleSort(unsortedArray);
 // console.log(unsortedArray);
@@ -172,19 +206,31 @@ function bigSortingWithInsertionSort(arr = []) {
 //   3084193741082938, 111, 200,
 // ];
 // bigSortingWithSelectionSort(unsortedArray);
+// console.log(unsortedArray);
+
+// let unsortedArray = [1, 200, 150, 3];
+// bigSortingWithInsertionSort(unsortedArray);
+// console.log(unsortedArray);
+
+// unsortedArray = [6, 31415926535897932384626433832795, 1, 3, 10, 3, 5];
+// bigSortingWithInsertionSort(unsortedArray);
+// console.log(unsortedArray);
+
+// unsortedArray = [
+//   8, 1, 2, 100, 12303479849857341718340192371, 3084193741082937,
+//   3084193741082938, 111, 200,
+// ];
+// bigSortingWithInsertionSort(unsortedArray);
 // console.log(unsortedArray);
 
 let unsortedArray = [1, 200, 150, 3];
-bigSortingWithInsertionSort(unsortedArray);
-console.log(unsortedArray);
+console.log(mergeSort(unsortedArray));
 
 unsortedArray = [6, 31415926535897932384626433832795, 1, 3, 10, 3, 5];
-bigSortingWithInsertionSort(unsortedArray);
-console.log(unsortedArray);
+console.log(mergeSort(unsortedArray));
 
 unsortedArray = [
   8, 1, 2, 100, 12303479849857341718340192371, 3084193741082937,
   3084193741082938, 111, 200,
 ];
-bigSortingWithInsertionSort(unsortedArray);
-console.log(unsortedArray);
+console.log(mergeSort(unsortedArray));
