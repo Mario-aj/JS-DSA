@@ -10,7 +10,7 @@
  *    if array[j] < array[lowest]:
  *        lowest = j;
  *
- * After the inner loop, check the the lowest if different of the first loop index.
+ * After the inner loop, check if the lowest is different of the first loop index.
  * If it's, than, swap their positions
  *
  * And in the the end, check if there was made a swap and if the first loop index is different of 0.

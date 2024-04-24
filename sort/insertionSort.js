@@ -1,14 +1,14 @@
 /**
  * Idea
  * Sort the array by picking  one element at a time and comper it with all
- * elements before, make a swap of j+1 and j until find an element which is small then
+ * elements before, make a swap of j+1 and j until find an element which is small than
  *  the current one, and insert the current into j+1.
  *
  *
  * PSEUDOCODE
  *
  * Starting loop over the entire array, by starting from the second position (index = 1).
- * asign the currentValue as arra[i];
+ * asign the currentValue as array[i];
  * make the inner loop which start from the i-1, and goes until j >= 0 and arr[j] > currentValue;
  *  make a swap, or arr[j+1] = arr[j]
  * After the inner loop, probabily j will be -1 or arr[j] will be less then currentValue.
