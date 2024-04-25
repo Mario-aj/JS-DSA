@@ -97,5 +97,15 @@ function NaiveSolution(arr = []) {
   console.log(min, max);
 }
 
+function communitySolution(arr = []) {
+  let sum = arr.reduce((ac, cc) => (ac += cc));
+
+  let min = sum - Math.max(...arr);
+  let max = sum - Math.min(...arr);
+
+  console.log(min, max);
+}
+
 miniMaxSum([1, 2, 3, 4, 5]);
 NaiveSolution([1, 2, 3, 4, 5]);
+comunitySolution([1, 3, 5, 7, 9]);
