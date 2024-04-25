@@ -150,7 +150,7 @@ function merge(arr1 = [], arr2 = []) {
   let j = 0;
 
   while (i < arr1.length && j < arr2.length) {
-    if (arr1[i] < arr2[j]) {
+    if (Number(arr1[i]) < Number(arr2[j])) {
       results.push(arr1[i++]);
     } else {
       results.push(arr2[j++]);
@@ -223,14 +223,29 @@ function mergeSort(arr = []) {
 // bigSortingWithInsertionSort(unsortedArray);
 // console.log(unsortedArray);
 
-let unsortedArray = [1, 200, 150, 3];
-console.log(mergeSort(unsortedArray));
-
-unsortedArray = [6, 31415926535897932384626433832795, 1, 3, 10, 3, 5];
+let unsortedArray = ["1", "3", "150", "200"];
 console.log(mergeSort(unsortedArray));
 
 unsortedArray = [
-  8, 1, 2, 100, 12303479849857341718340192371, 3084193741082937,
-  3084193741082938, 111, 200,
+  "6",
+  "31415926535897932384626433832795",
+  "1",
+  "3",
+  "10",
+  "3",
+  "5",
+];
+console.log(mergeSort(unsortedArray));
+
+unsortedArray = [
+  "8",
+  "1",
+  "2",
+  "100",
+  "12303479849857341718340192371",
+  "3084193741082937",
+  "3084193741082938",
+  "111",
+  "200",
 ];
 console.log(mergeSort(unsortedArray));
