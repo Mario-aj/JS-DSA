@@ -72,4 +72,30 @@ function miniMaxSum(arr) {
   console.log(min, max);
 }
 
+function NaiveSolution(arr = []) {
+  let min = Infinity;
+  let max = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    let sum = 0;
+
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j] !== arr[i]) {
+        sum += arr[j];
+      }
+    }
+
+    if (sum > max) {
+      max = sum;
+    }
+
+    if (sum < min) {
+      min = sum;
+    }
+  }
+
+  console.log(min, max);
+}
+
 miniMaxSum([1, 2, 3, 4, 5]);
+NaiveSolution([1, 2, 3, 4, 5]);
