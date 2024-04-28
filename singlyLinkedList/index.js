@@ -42,7 +42,27 @@ class SinglyLinkedList {
     this.tail = previousNode;
     this.length--;
 
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
     return currentNode;
+  }
+
+  shift() {
+    if (!this.length) return undefined;
+
+    let previousHead = this.head;
+    this.head = previousHead.next;
+
+    this.length--;
+
+    if (this.length === 0) {
+      this.tail = null;
+    }
+
+    return previousHead;
   }
 }
 
@@ -55,5 +75,14 @@ list.push("Mario");
 
 console.log(list);
 
+console.log(
+  "=================================== POP ==================================="
+);
 list.pop();
+console.log(list);
+
+console.log(
+  "=================================== SHIFT ==================================="
+);
+list.shift();
 console.log(list);
