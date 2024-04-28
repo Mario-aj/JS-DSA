@@ -81,6 +81,20 @@ class SinglyLinkedList {
     return this;
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    let count = 0;
+    let current = this.head;
+
+    while (count !== index) {
+      current = current.next;
+      count++;
+    }
+
+    return current;
+  }
+
   createNode(value) {
     return new Node(value);
   }
@@ -112,3 +126,9 @@ console.log(
 );
 list.unshift("New Node");
 console.log(list);
+
+console.log(
+  "=================================== GET ==================================="
+);
+const target = list.get(1);
+console.log(target);
