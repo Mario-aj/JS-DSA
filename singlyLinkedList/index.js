@@ -95,6 +95,16 @@ class SinglyLinkedList {
     return current;
   }
 
+  set(value, index) {
+    const targetNode = this.get(index);
+
+    if (!targetNode) return false;
+
+    targetNode.value = value;
+
+    return true;
+  }
+
   createNode(value) {
     return new Node(value);
   }
@@ -130,5 +140,12 @@ console.log(list);
 console.log(
   "=================================== GET ==================================="
 );
-const target = list.get(1);
+let target = list.get(1);
 console.log(target);
+
+console.log(
+  "=================================== SET ==================================="
+);
+
+list.set("FIRST", 0);
+console.log(list);
