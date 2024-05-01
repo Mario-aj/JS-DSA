@@ -124,6 +124,23 @@ class SinglyLinkedList {
     return true;
   }
 
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    if (index === 0) return this.shift();
+
+    if (index === this.length - 1) return this.pop();
+
+    const previousNode = this.get(index - 1);
+    const currentNode = previousNode.next;
+
+    previousNode.next = currentNode.next;
+
+    this.length--;
+
+    return currentNode;
+  }
+
   createNode(value) {
     return new Node(value);
   }
@@ -174,4 +191,11 @@ console.log(
 );
 
 list.insert("INSERTED VALUE!", 1);
+console.log(list);
+
+console.log(
+  "=================================== REMOVE ==================================="
+);
+
+list.remove(1);
 console.log(list);
