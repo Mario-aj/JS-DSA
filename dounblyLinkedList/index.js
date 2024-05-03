@@ -51,6 +51,25 @@ class DoublyLinkedList {
     this.length--;
     return removedNode;
   }
+
+  shift() {
+    if (!this.length) return undefined;
+
+    // LL: null <=> [1] <=> [2] <=> [3] <=> null
+    const oldestHead = this.head; // [1]
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldestHead.next; // [2]
+      this.head.prev = null; // null <=> [2]
+      oldestHead.next = null; // [1] <=> null
+    }
+
+    this.length--;
+    return oldestHead;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -66,4 +85,10 @@ console.log(
   "======================================== POP ========================================"
 );
 list.pop();
+console.log(list);
+
+console.log(
+  "======================================== SHIFT ========================================"
+);
+list.shift();
 console.log(list);
