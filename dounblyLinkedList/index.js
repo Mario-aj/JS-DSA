@@ -70,6 +70,22 @@ class DoublyLinkedList {
     this.length--;
     return oldestHead;
   }
+
+  unshit(value) {
+    const newNode = this.creatNode(value);
+
+    if (!this.length) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -81,14 +97,14 @@ list.push(4);
 
 console.log(list);
 
-console.log(
-  "======================================== POP ========================================"
-);
+console.log("============================ POP ============================");
 list.pop();
 console.log(list);
 
-console.log(
-  "======================================== SHIFT ========================================"
-);
+console.log("=========================== SHIFT ===========================");
 list.shift();
+console.log(list);
+
+console.log("========================== UNSHIFT ==========================");
+list.unshit(0);
 console.log(list);
