@@ -86,6 +86,31 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    const middle = Math.floor(this.length / 2);
+    let current;
+
+    if (middle <= index) {
+      current = this.tail;
+      let count = this.length - 1;
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
+    } else {
+      current = this.head;
+      let count = 0;
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+    }
+
+    return current;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -108,3 +133,10 @@ console.log(list);
 console.log("========================== UNSHIFT ==========================");
 list.unshit(0);
 console.log(list);
+
+console.log("========================== GET ==========================");
+list.push(5);
+list.push(6);
+list.push(7);
+const target = list.get(3);
+console.log(target);
