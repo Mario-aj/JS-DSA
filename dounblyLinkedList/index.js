@@ -125,10 +125,13 @@ class DoublyLinkedList {
   insert(index, value) {
     //  null <=> [1] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> [7] <=> null
 
+    if (index < 0 || index > this.length) return false;
+
+    if (index === 0) return !!this.unshit(value);
+
+    if (index === this.length) return !!this.push(value);
+
     const targetNode = this.get(index);
-
-    if (!targetNode) return undefined;
-
     const newNode = this.creatNode(value);
 
     const targetPrevious = targetNode.prev;
@@ -138,7 +141,7 @@ class DoublyLinkedList {
     newNode.prev = targetPrevious;
 
     this.length++;
-    return newNode;
+    return true;
   }
 }
 
