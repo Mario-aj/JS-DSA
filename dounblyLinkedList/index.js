@@ -121,6 +121,25 @@ class DoublyLinkedList {
 
     return true;
   }
+
+  insert(index, value) {
+    //  null <=> [1] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> [7] <=> null
+
+    const targetNode = this.get(index);
+
+    if (!targetNode) return undefined;
+
+    const newNode = this.creatNode(value);
+
+    const targetPrevious = targetNode.prev;
+    targetNode.prev = newNode;
+    newNode.next = targetNode;
+    targetPrevious.next = newNode;
+    newNode.prev = targetPrevious;
+
+    this.length++;
+    return newNode;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -148,10 +167,16 @@ console.log("========================== GET ==========================");
 list.push(5);
 list.push(6);
 list.push(7);
-const target = list.get(3);
+let target = list.get(3);
 console.log(target);
 
 console.log("========================== SET ==========================");
 list.set(1, 1);
 list.set(2, 2);
 console.log(list);
+
+console.log("========================== INSERT ==========================");
+target = list.insert(3, 3);
+console.log(target);
+target = list.insert(4, 4);
+console.log(target);
