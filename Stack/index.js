@@ -43,6 +43,10 @@ class Stack {
   isEmpty() {
     return this.size === 0;
   }
+
+  top() {
+    return this.first.value;
+  }
 }
 
 const stack = new Stack();
@@ -61,3 +65,5 @@ console.log(stack.pop());
 console.log(stack);
 
 console.log(stack.isEmpty());
+
+console.log(stack.top());
