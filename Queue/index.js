@@ -40,6 +40,12 @@ class Queue {
 
     return oldHead.value;
   }
+
+  peek() {
+    if (this.size === 0) return undefined;
+
+    return this.last.value;
+  }
 }
 
 const queue = new Queue();
@@ -55,3 +61,5 @@ console.log(queue);
 queue.dequeue();
 queue.dequeue();
 console.log(queue);
+
+console.log(queue.peek());
