@@ -164,6 +164,35 @@ class DoublyLinkedList {
 
     return target;
   }
+
+  reverse() {
+    //  null <=> [1] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> [7] <=> null
+
+    if (!this.head) return undefined;
+
+    const headNext = this.head.next;
+    const tailPrev = this.tail.prev;
+
+    this.tail = this.head; // null <=> [1] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> null <=> [1]
+    this.tail.next = null; // // null <=> [1] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> null <=> [1] <=> null
+    this.tail.prev = tailPrev; // null <=> [1] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> [1] <=> null
+
+    this.head = tailPrev.next; // [7] <=> null <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> [1] <=> null
+    this.head.prev = null; // null <=> [7] <=> [2] <=> [3] <=> [4] <=> [5] <=> [6] <=> [1] <=> null
+    this.head.next = headNext;
+  }
+
+  print() {
+    let arr = [];
+    let current = this.head;
+
+    while (current !== null) {
+      arr.push(current.value);
+      current = current.next;
+    }
+
+    console.log(arr);
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -206,3 +235,9 @@ list.insert(4, 4);
 console.log("========================== REMOVE ==========================");
 target = list.remove(3);
 console.log(target);
+
+console.log("========================== REVERSE ==========================");
+list.insert(3, 3);
+list.print();
+list.reverse();
+list.print();
