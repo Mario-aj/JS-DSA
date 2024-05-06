@@ -37,6 +37,7 @@ class Queue {
 
     this.first = this.first.next;
     oldHead.next = null;
+    this.size--;
 
     return oldHead.value;
   }
