@@ -46,6 +46,10 @@ class Queue {
 
     return this.last.value;
   }
+
+  isEmpty() {
+    return this.size === 0;
+  }
 }
 
 const queue = new Queue();
@@ -63,3 +67,4 @@ queue.dequeue();
 console.log(queue);
 
 console.log(queue.peek());
+console.log(queue.isEmpty());
