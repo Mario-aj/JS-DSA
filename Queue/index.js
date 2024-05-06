@@ -13,7 +13,7 @@ class Queue {
   }
 
   enqueue(value) {
-    const node = new Node(value);
+    const node = new QueueNode(value);
 
     if (!this.size) {
       this.first = node;
@@ -25,4 +25,33 @@ class Queue {
 
     return ++this.size;
   }
+
+  dequeue() {
+    if (this.size === 0) return null;
+
+    const oldHead = this.first;
+
+    if (this.size === 1) {
+      this.last = null;
+    }
+
+    this.first = this.first.next;
+    oldHead.next = null;
+
+    return oldHead.value;
+  }
 }
+
+const queue = new Queue();
+
+queue.enqueue(0);
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+
+console.log(queue);
+
+queue.dequeue();
+queue.dequeue();
+console.log(queue);
