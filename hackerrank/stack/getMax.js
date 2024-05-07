@@ -45,23 +45,28 @@ Sample Output
 function getMax(operations) {
   // Write your code here
   const stack = [];
+  let virtual = [];
 
   for (let op of operations) {
-    if (op === "2") {
-      stack.pop();
+    let [typeOperation, value] = op.split(" ");
+
+    if (typeOperation === "1" && value) {
+      virtual.push(value);
     }
 
-    let splited = op.split(" ")[1];
+    if (typeOperation === "2" && virtual.length) {
+      virtual.pop();
+    }
 
-    if (splited) {
-      stack.push(splited);
+    if (typeOperation === "3" && virtual.length) {
+      stack.push(Math.max(...virtual));
     }
   }
 
   return stack;
 }
 
-const operations = [
+let operations = [
   "1 97",
   "2",
   "1 20",
@@ -74,7 +79,12 @@ const operations = [
   "3",
 ];
 
-const res = getMax(operations);
+let res = getMax(operations);
 console.log(res.join("\n"));
 // 26
 //  91
+
+operations = ["1 83", "3", "2", "1 76"];
+
+res = getMax(operations);
+console.log(res.join("\n"));
