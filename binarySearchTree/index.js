@@ -41,24 +41,20 @@ class BinarySearchTree {
   }
 
   find(value) {
-    if (!this.root) return false;
+    if (!this.root) return undefined;
 
     let current = this.root;
 
     while (true) {
-      if (current.value === value) {
-        return true;
-      }
-
       if (current.value > value) {
-        if (!current.left) return false;
+        if (!current.left) return undefined;
 
         current = current.left;
-      } else {
-        if (!current.right) return false;
+      } else if (current.value < value) {
+        if (!current.right) return undefined;
 
         current = current.right;
-      }
+      } else return current;
     }
   }
 
