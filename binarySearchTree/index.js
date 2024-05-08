@@ -41,6 +41,31 @@ class BinarySearchTree {
 
     return this;
   }
+
+  recursiveInsert(value, root = this.root) {
+    const newNode = new BinarySearchTreeNode(value);
+
+    if (!root) {
+      this.root = newNode;
+      return this;
+    }
+
+    if (root.value > value) {
+      if (root.left) {
+        this.recursiveInsert(value, root.left);
+      } else {
+        root.left = newNode;
+        return this;
+      }
+    } else {
+      if (root.right) {
+        this.recursiveInsert(value, root.right);
+      } else {
+        root.right = newNode;
+        return this;
+      }
+    }
+  }
 }
 
 const BST = new BinarySearchTree();
@@ -53,8 +78,8 @@ BST.insert(8);
 BST.insert(3);
 BST.insert(10);
 BST.insert(1);
-BST.insert(9);
-BST.insert(14);
-BST.insert(6);
+BST.recursiveInsert(9);
+BST.recursiveInsert(14);
+BST.recursiveInsert(6);
 
 console.log(BST.root);
