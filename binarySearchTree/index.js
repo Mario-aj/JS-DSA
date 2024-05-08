@@ -38,8 +38,28 @@ class BinarySearchTree {
         current = current.right;
       } else return this;
     }
+  }
 
-    return this;
+  find(value) {
+    if (!this.root) return false;
+
+    let current = this.root;
+
+    while (true) {
+      if (current.value === value) {
+        return true;
+      }
+
+      if (current.value > value) {
+        if (!current.left) return false;
+
+        current = current.left;
+      } else {
+        if (!current.right) return false;
+
+        current = current.right;
+      }
+    }
   }
 
   recursiveInsert(value, current = this.root) {
@@ -83,3 +103,7 @@ BST.recursiveInsert(14);
 BST.recursiveInsert(6);
 
 console.log(BST.root);
+
+console.log("========================= FINDING =========================");
+let found = BST.find(13);
+console.log(found);
