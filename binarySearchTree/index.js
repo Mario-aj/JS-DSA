@@ -14,57 +14,57 @@ class BinarySearchTree {
   insert(value) {
     const newNode = new BinarySearchTreeNode(value);
 
-    let root = this.root;
+    if (!this.root) {
+      this.root = newNode;
+      return this;
+    }
+
+    let current = this.root;
 
     while (true) {
-      if (!root) {
-        this.root = newNode;
-        break;
-      } else {
-        if (root.value > value) {
-          if (root.left) {
-            root = root.left;
-          } else {
-            root.left = newNode;
-            break;
-          }
-        } else {
-          if (root.right) {
-            root = root.right;
-          } else {
-            root.right = newNode;
-            break;
-          }
+      if (current.value > value) {
+        if (!current.left) {
+          current.left = newNode;
+          return this;
         }
-      }
+
+        current = current.left;
+      } else if (current.value < value) {
+        if (!current.right) {
+          current.right = newNode;
+          return this;
+        }
+
+        current = current.right;
+      } else return this;
     }
 
     return this;
   }
 
-  recursiveInsert(value, root = this.root) {
+  recursiveInsert(value, current = this.root) {
     const newNode = new BinarySearchTreeNode(value);
 
-    if (!root) {
+    if (!current) {
       this.root = newNode;
       return this;
     }
 
-    if (root.value > value) {
-      if (root.left) {
-        this.recursiveInsert(value, root.left);
-      } else {
-        root.left = newNode;
+    if (current.value > value) {
+      if (!current.left) {
+        current.left = newNode;
         return this;
       }
-    } else {
-      if (root.right) {
-        this.recursiveInsert(value, root.right);
-      } else {
-        root.right = newNode;
+
+      this.recursiveInsert(value, current.left);
+    } else if (current.value < value) {
+      if (!current.right) {
+        current.right = newNode;
         return this;
       }
-    }
+
+      this.recursiveInsert(value, current.right);
+    } else return this;
   }
 }
 
