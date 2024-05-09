@@ -8,6 +8,18 @@
  * Time Complexity: O(N), where N is the length of the list.
 
  * Space Complexity: O(1)
+
+
+  ** Solution:
+  The idea behind this algorithm, it should move each element from the head of the list and
+  put it in the tail, it must be in the same order until you hit the number of the rotation.
+
+  PSEUDOCODE:
+    while the count is less than the rotate numbers: 
+      pick the head
+      move the head to be head.next;
+      make tail.next to be picked head;
+      move tail to be tail.next; 
  */
 
 class Node {
@@ -36,35 +48,24 @@ class SinglyLinkedList {
     return this;
   }
   rotate(num) {
-    if (!this.head) return;
+    if (!this.head || num > this.length) return;
 
-    let prev = null;
-    let current = this.head;
+    if (num < 0) {
+      num += this.length;
+    }
+
     let countOfRotation = 0;
 
-    while (countOfRotation < num && current) {
-      let nxt = current.next;
-      current.next = prev;
-      prev = current;
-      current = nxt;
+    while (countOfRotation < num) {
+      const currentHead = this.head;
+      this.head = currentHead.next;
+
+      currentHead.next = null;
+      this.tail.next = currentHead;
+      this.tail = currentHead;
+
       countOfRotation++;
     }
-
-    this.tail = this.head;
-    this.tail.next = null;
-
-    if (countOfRotation === num && current) {
-      this.head = current;
-
-      while (current.next) {
-        current = current.next;
-      }
-
-      current.next = prev;
-      return;
-    }
-
-    this.head = prev;
   }
 }
 
@@ -76,6 +77,8 @@ ll.push(3);
 ll.push(4);
 ll.push(5);
 
-ll.rotate(2);
+ll.rotate(-1);
 
-console.log(ll);
+console.log(ll.head);
+console.log(ll.head.next);
+console.log(ll.head.next.next);
