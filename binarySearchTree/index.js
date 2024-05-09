@@ -82,6 +82,22 @@ class BinarySearchTree {
       this.recursiveInsert(value, current.right);
     } else return this;
   }
+
+  recursiveFind(value, current = this.root) {
+    if (!current) return undefined;
+
+    if (current.value === value) {
+      return current;
+    } else if (current.value > value) {
+      if (!current.left) return undefined;
+
+      return this.recursiveFind(value, current.left);
+    } else {
+      if (!current.right) return undefined;
+
+      return this.recursiveFind(value, current.right);
+    }
+  }
 }
 
 const BST = new BinarySearchTree();
@@ -102,4 +118,6 @@ console.log(BST.root);
 
 console.log("========================= FINDING =========================");
 let found = BST.find(13);
+console.log(found);
+found = BST.recursiveFind(10);
 console.log(found);
