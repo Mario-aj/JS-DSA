@@ -58,6 +58,31 @@ class BinarySearchTree {
     }
   }
 
+  breadthFirstSearch() {
+    if (!this.root) return [];
+
+    const queue = [];
+    const result = [];
+
+    queue.push(this.root);
+
+    while (queue.length) {
+      let current = queue.shift();
+
+      if (current.left) {
+        queue.push(current.left);
+      }
+
+      if (current.right) {
+        queue.push(current.right);
+      }
+
+      result.push(current.value);
+    }
+
+    return result;
+  }
+
   recursiveInsert(value, current = this.root) {
     const newNode = new BinarySearchTreeNode(value);
 
@@ -121,3 +146,7 @@ let found = BST.find(13);
 console.log(found);
 found = BST.recursiveFind(10);
 console.log(found);
+
+console.log("========================= BFS =========================");
+let result = BST.breadthFirstSearch();
+console.log(result);
