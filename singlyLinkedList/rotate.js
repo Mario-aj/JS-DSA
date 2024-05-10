@@ -48,7 +48,7 @@ class SinglyLinkedList {
     return this;
   }
   rotate(num) {
-    if (!this.head || num > this.length) return;
+    if (!this.head || num >= this.length) return;
 
     if (num < 0) {
       num += this.length;
