@@ -83,7 +83,7 @@ class BinarySearchTree {
     return result;
   }
 
-  DFSPreorderWithHelper() {
+  DFSPreorder() {
     let results = [];
     function traverse(current) {
       if (!current) return;
@@ -91,6 +91,23 @@ class BinarySearchTree {
 
       traverse(current.left);
       traverse(current.right);
+    }
+
+    traverse(this.root);
+
+    return results;
+  }
+
+  DFSPostorder() {
+    let results = [];
+
+    function traverse(current) {
+      if (!current) return;
+
+      traverse(current.left);
+      traverse(current.right);
+
+      results.push(current.value);
     }
 
     traverse(this.root);
@@ -180,5 +197,9 @@ console.log(result);
 console.log("========================= DFS PREORDER =========================");
 result = BST.DFSPreorderRecursive();
 console.log(result);
-result = BST.DFSPreorderWithHelper();
+result = BST.DFSPreorder();
+console.log(result);
+
+console.log("======================== DFS POSTORDER ========================");
+result = BST.DFSPostorder();
 console.log(result);
