@@ -85,15 +85,15 @@ class BinarySearchTree {
 
   DFSPreorderWithHelper() {
     let results = [];
-    function helper(current) {
+    function traverse(current) {
       if (!current) return;
       results.push(current.value);
 
-      helper(current.left);
-      helper(current.right);
+      traverse(current.left);
+      traverse(current.right);
     }
 
-    helper(this.root);
+    traverse(this.root);
 
     return results;
   }
