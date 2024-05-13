@@ -83,6 +83,21 @@ class BinarySearchTree {
     return result;
   }
 
+  DFSPreorder() {
+    let results = [];
+    function helper(current) {
+      if (!current) return;
+      results.push(current.value);
+
+      helper(current.left);
+      helper(current.right);
+    }
+
+    helper(this.root);
+
+    return results;
+  }
+
   recursiveInsert(value, current = this.root) {
     const newNode = new BinarySearchTreeNode(value);
 
@@ -149,4 +164,8 @@ console.log(found);
 
 console.log("========================= BFS =========================");
 let result = BST.breadthFirstSearch();
+console.log(result);
+
+console.log("========================= DFS PREORDER =========================");
+result = BST.DFSPreorder();
 console.log(result);
