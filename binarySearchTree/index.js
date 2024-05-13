@@ -115,6 +115,22 @@ class BinarySearchTree {
     return results;
   }
 
+  DFSInorder() {
+    let results = [];
+
+    function traverse(current) {
+      if (!current) return;
+
+      traverse(current.left);
+      results.push(current.value);
+      traverse(current.right);
+    }
+
+    traverse(this.root);
+
+    return results;
+  }
+
   DFSPreorderRecursive(current = this.root, results = []) {
     if (!current) return;
 
@@ -202,4 +218,8 @@ console.log(result);
 
 console.log("======================== DFS POSTORDER ========================");
 result = BST.DFSPostorder();
+console.log(result);
+
+console.log("======================== DFS INORDER ========================");
+result = BST.DFSInorder();
 console.log(result);
