@@ -223,3 +223,7 @@ console.log(result);
 console.log("======================== DFS INORDER ========================");
 result = BST.DFSInorder();
 console.log(result);
+
+console.log("======================== DFS HEIGHT ========================");
+result = BST.height();
+console.log(result);
