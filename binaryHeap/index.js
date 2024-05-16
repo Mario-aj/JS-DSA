@@ -6,7 +6,7 @@ class BinaryHeap {
   insert(value) {
     this.values.push(value);
 
-    function bubble(values, index) {
+    function bubbleToCorrectPlace(values, index) {
       if (index === 0) return values;
 
       const parentIndex = Math.floor((index - 1) / 2);
@@ -17,10 +17,10 @@ class BinaryHeap {
       values[index] = values[parentIndex];
       values[parentIndex] = temp;
 
-      return bubble(values, parentIndex);
+      return bubbleToCorrectPlace(values, parentIndex);
     }
 
-    this.values = bubble(this.values, this.values.length - 1);
+    this.values = bubbleToCorrectPlace(this.values, this.values.length - 1);
 
     return this;
   }
