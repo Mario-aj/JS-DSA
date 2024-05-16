@@ -131,6 +131,56 @@ class BinarySearchTree {
     return results;
   }
 
+  remove(value) {
+    if (!this.root) return;
+
+    this.root = this.#removeNode(this.root, value);
+  }
+
+  #removeNode(node, value) {
+    if (node.value === value) {
+      if (node.right && node.left) {
+        let current = node.right;
+
+        while (current.left) {
+          current = current.left;
+        }
+
+        let temp = node;
+        node.value = current.value;
+        current.value = temp.value;
+
+        node.right = this.#removeNode(node.right, current.value);
+
+        return node;
+      }
+
+      if (node.left) {
+        node = node.left;
+        return node;
+      }
+
+      if (node.right) {
+        node = node.right;
+        return node;
+      }
+
+      return null;
+    } else if (node.value > value) {
+      if (node.left) {
+        node.left = this.#removeNode(node.left, value);
+      }
+
+      return node;
+    } else {
+      if (node.right) {
+        node.right = this.#removeNode(node.right, value);
+      }
+
+      return node;
+    }
+  }
+
   DFSPreorderRecursive(current = this.root, results = []) {
     if (!current) return;
 
@@ -197,6 +247,7 @@ BST.insert(1);
 BST.recursiveInsert(9);
 BST.recursiveInsert(14);
 BST.recursiveInsert(6);
+BST.recursiveInsert(15);
 
 console.log(BST.root);
 
@@ -224,6 +275,23 @@ console.log("======================== DFS INORDER ========================");
 result = BST.DFSInorder();
 console.log(result);
 
-console.log("======================== DFS HEIGHT ========================");
-result = BST.height();
-console.log(result);
+console.log("====================== DFS REMOVE a left ======================");
+console.log(BST);
+BST.remove(1);
+console.log(BST.root);
+
+console.log("================== DFS REMOVE with one Child ==================");
+BST.remove(14);
+console.log(BST.root);
+
+console.log("================ DFS REMOVE with two children =================");
+BST.remove(10);
+console.log(BST.root);
+
+console.log("======================= DFS REMOVE ROOT =======================");
+BST.remove(8);
+console.log(BST.root);
+
+console.log("========== DFS REMOVE a value that is not in the tree ==========");
+BST.remove(100);
+console.log(BST.root);
