@@ -181,6 +181,14 @@ class BinarySearchTree {
     }
   }
 
+  findSecondLargest() {
+    if (!this.root || (!this.root.right && !this.root.left)) return;
+
+    let results = this.DFSInorder();
+
+    return results[results.length - 2];
+  }
+
   DFSPreorderRecursive(current = this.root, results = []) {
     if (!current) return;
 
@@ -295,3 +303,7 @@ console.log(BST.root);
 console.log("========== DFS REMOVE a value that is not in the tree ==========");
 BST.remove(100);
 console.log(BST.root);
+
+console.log("========== DFS SECONDA LARGEST VALUE ==========");
+result = BST.findSecondLargest();
+console.log(result);
