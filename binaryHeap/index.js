@@ -1,4 +1,4 @@
-class BinaryHeap {
+class MaxBinaryHeap {
   constructor() {
     this.values = [];
   }
@@ -6,27 +6,27 @@ class BinaryHeap {
   insert(value) {
     this.values.push(value);
 
-    function bubbleToCorrectPlace(values, index) {
+    function bubbleUp(values, index) {
       if (index === 0) return values;
 
       const parentIndex = Math.floor((index - 1) / 2);
 
-      if (values[index] < values[parentIndex]) return values;
+      if (values[index] <= values[parentIndex]) return values;
 
       let temp = values[index];
       values[index] = values[parentIndex];
       values[parentIndex] = temp;
 
-      return bubbleToCorrectPlace(values, parentIndex);
+      return bubbleUp(values, parentIndex);
     }
 
-    this.values = bubbleToCorrectPlace(this.values, this.values.length - 1);
+    this.values = bubbleUp(this.values, this.values.length - 1);
 
     return this;
   }
 }
 
-const binaryHeap = new BinaryHeap();
+const binaryHeap = new MaxBinaryHeap();
 
 binaryHeap.insert(12);
 binaryHeap.insert(1);
