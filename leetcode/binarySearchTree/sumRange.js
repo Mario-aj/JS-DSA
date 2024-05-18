@@ -26,7 +26,6 @@ var rangeSumBST = function (root, low, high) {
   return sum;
 };
 
-// 10,5,15,3,7,null,18
 binarySearchTree = {
   val: 10,
   left: {
