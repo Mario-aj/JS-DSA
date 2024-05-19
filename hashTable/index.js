@@ -16,4 +16,24 @@ class HashTable {
 
     return total;
   }
+
+  set(key, value) {
+    const idx = this._hash(key);
+
+    if (!this.keyMap[idx]) {
+      this.keyMap[idx] = [];
+    }
+
+    this.keyMap[idx].push([key, value]);
+
+    return this;
+  }
 }
+
+const hashTable = new HashTable();
+
+hashTable.set("foo", "test");
+hashTable.set("bar", "test1");
+hashTable.set("foobar", "complete test");
+
+console.log(hashTable.keyMap);
