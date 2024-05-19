@@ -28,6 +28,18 @@ class HashTable {
 
     return this;
   }
+
+  get(key) {
+    const idx = this._hash(key);
+
+    if (!this.keyMap[idx]) return undefined;
+
+    let tagetKey = this.keyMap[idx];
+
+    const element = tagetKey.find((tk) => tk[0] === key);
+
+    return element[1];
+  }
 }
 
 const hashTable = new HashTable();
@@ -37,3 +49,7 @@ hashTable.set("bar", "test1");
 hashTable.set("foobar", "complete test");
 
 console.log(hashTable.keyMap);
+
+console.log("============================ GET ============================");
+console.log(hashTable.get("foo"));
+console.log(hashTable.get("test5"));
