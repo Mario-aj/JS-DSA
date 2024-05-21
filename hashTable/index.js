@@ -40,6 +40,22 @@ class HashTable {
 
     return element[1];
   }
+
+  keys() {
+    let results = [];
+
+    for (let i = 0; i < this.keyMap.length; i++) {
+      let currentMap = this.keyMap[i];
+
+      if (currentMap && currentMap.length >= 1) {
+        for (let j = 0; j < currentMap.length; j++) {
+          results.push(currentMap[j][0]);
+        }
+      }
+    }
+
+    return results;
+  }
 }
 
 const hashTable = new HashTable();
@@ -53,3 +69,6 @@ console.log(hashTable.keyMap);
 console.log("============================ GET ============================");
 console.log(hashTable.get("foo"));
 console.log(hashTable.get("test5"));
+
+console.log("============================ Keys ============================");
+console.log(hashTable.keys());
