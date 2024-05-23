@@ -11,7 +11,7 @@ class Graph {
     return this;
   }
 
-  addEgde(vertex1, vertex2) {
+  addEdge(vertex1, vertex2) {
     if (this.adjacencyList[vertex1]) {
       this.adjacencyList[vertex1].push(vertex2);
     }
@@ -53,6 +53,28 @@ class Graph {
     return removedVertex;
   }
 
+  dfs(startPoint) {
+    if (!this.adjacencyList[startPoint]) return;
+
+    let stack = [];
+    let visited = {};
+
+    stack.push(startPoint);
+
+    while (stack.length) {
+      let currentVertex = stack.pop();
+
+      if (visited[currentVertex]) continue;
+
+      console.log(currentVertex);
+      visited[currentVertex] = true;
+
+      if (this.adjacencyList[currentVertex].length) {
+        stack.push(...this.adjacencyList[currentVertex]);
+      }
+    }
+  }
+
   #remove(list, element) {
     return list.filter((cc) => cc !== element);
   }
@@ -60,38 +82,59 @@ class Graph {
 
 const g = new Graph();
 
-g.addVertex("Luanda");
-g.addVertex("Benguela");
 g.addVertex("Bengo");
-g.addVertex("Uige");
-g.addVertex("Zaire");
-g.addVertex("Huambo");
+g.addVertex("Benguela");
+g.addVertex("Bié");
+g.addVertex("Cabinda");
+g.addVertex("Cuando Cubango");
+g.addVertex("Cuanza Norte");
+g.addVertex("Cuanza Sul");
 g.addVertex("Cunene");
 g.addVertex("Huambo");
-g.addVertex("Huila");
-g.addVertex("Bie");
-g.addVertex("Namibe");
+g.addVertex("Huíla");
+g.addVertex("Luanda");
+g.addVertex("Lunda Norte");
+g.addVertex("Lunda Sul");
+g.addVertex("Malanje");
 g.addVertex("Moxico");
+g.addVertex("Namibe");
+g.addVertex("Uíge");
+g.addVertex("Zaire");
 
 console.log(g.adjacencyList);
 
 console.log("=================== ADDING Edge =======================");
-g.addEgde("Luanda", "Bengo");
-g.addEgde("Bengo", "Uige");
-g.addEgde("Uige", "Zaire");
-g.addEgde("Bengo", "Zaire");
-g.addEgde("Benguela", "Huambo");
-g.addEgde("Benguela", "Huila");
-g.addEgde("Benguela", "Namibe");
-g.addEgde("Namibe", "Cunene");
-g.addEgde("Huila", "Cunene");
-g.addEgde("Huila", "Huambo");
-g.addEgde("Huila", "Bie");
-g.addEgde("Huambo", "Bie");
-g.addEgde("Moxico", "Bie");
+g.addEdge("Luanda", "Bengo");
+g.addEdge("Bengo", "Cuanza Norte");
+g.addEdge("Bengo", "Cuanza Sul");
+g.addEdge("Cuanza Norte", "Cuanza Sul");
+g.addEdge("Cuanza Norte", "Malanje");
+g.addEdge("Cuanza Sul", "Benguela");
+g.addEdge("Cuanza Sul", "Huambo");
+g.addEdge("Benguela", "Huambo");
+g.addEdge("Benguela", "Huíla");
+g.addEdge("Huambo", "Bié");
+g.addEdge("Huambo", "Huíla");
+g.addEdge("Huíla", "Namibe");
+g.addEdge("Huíla", "Cunene");
+g.addEdge("Namibe", "Cunene");
+g.addEdge("Cuando Cubango", "Cunene");
+g.addEdge("Cuando Cubango", "Moxico");
+g.addEdge("Moxico", "Bié");
+g.addEdge("Moxico", "Lunda Sul");
+g.addEdge("Bié", "Malanje");
+g.addEdge("Bié", "Lunda Sul");
+g.addEdge("Lunda Sul", "Lunda Norte");
+g.addEdge("Lunda Norte", "Uíge");
+g.addEdge("Uíge", "Zaire");
+g.addEdge("Zaire", "Cabinda");
+g.addEdge("Uíge", "Malanje");
 console.log(g.adjacencyList);
 
-console.log("=================== REMOVE Edge =======================");
+console.log("=================== DFS =======================\n");
+g.dfs("Luanda");
+
+console.log("\n=================== REMOVE Edge =======================");
 g.removeEdge("Luanda", "Bengo");
 g.removeEdge("Uige", "Zaire");
 console.log(g.adjacencyList);
