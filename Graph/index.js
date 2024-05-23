@@ -75,6 +75,30 @@ class Graph {
     }
   }
 
+  dfsRecursive(startPoint) {
+    let result = [];
+    let visited = {};
+
+    const adjacencyList = this.adjacencyList;
+
+    function dfs(vertex) {
+      if (!vertex) return;
+
+      visited[vertex] = true;
+      result.push(vertex);
+
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          return dfs(neighbor);
+        }
+      });
+    }
+
+    dfs(startPoint);
+
+    return result;
+  }
+
   #remove(list, element) {
     return list.filter((cc) => cc !== element);
   }
@@ -133,6 +157,10 @@ console.log(g.adjacencyList);
 
 console.log("=================== DFS =======================\n");
 g.dfs("Luanda");
+
+console.log("=================== RECURSIVE DFS =======================\n");
+let result = g.dfsRecursive("Luanda");
+console.log(result);
 
 console.log("\n=================== REMOVE Edge =======================");
 g.removeEdge("Luanda", "Bengo");
