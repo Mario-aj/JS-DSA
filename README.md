@@ -6,11 +6,15 @@ This is my DSA repository, here I'll be sharing my DSA journey, all problems' so
 
 ### Youtube channels
 
-<p>[Abdul Bari](https://www.youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O)</p>
-<p>[Jenny's Lectures CS IT](https://www.youtube.com/watch?v=AT14lCXuMKI&list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU)</p>
-<p>[William Fiset youtube channel](https://www.youtube.com/@WilliamFiset-videos/playlists)</p>
-<p>[MIT open course](https://www.youtube.com/watch?v=ZA-tUyM_y7s&list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY)</p>
-<p>[Back to black SWE](https://www.youtube.com/@BackToBackSWE)</p>
+<a href="https://www.youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O" target="_blank">Abdul Bari</a>
+
+<a href="https://www.youtube.com/watch?v=AT14lCXuMKI&list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU" target="_blank">Jenny's Lectures CS IT</a>
+
+<a href="https://www.youtube.com/@WilliamFiset-videos/playlists" target="_blank">William Fiset youtube channel</a>
+
+<a href="https://www.youtube.com/watch?v=ZA-tUyM_y7s&list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY" target="_blank">MIT open course</a>
+
+<a href="(https://www.youtube.com/@BackToBackSWE" target="_blank">Back to black SWE</a>
 
 ### Books
 
