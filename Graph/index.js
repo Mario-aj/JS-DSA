@@ -99,6 +99,30 @@ class Graph {
     return result;
   }
 
+  bfs(vertex) {
+    if (!this.adjacencyList[vertex]) return;
+
+    let queue = [vertex];
+    let result = [];
+    let visited = {};
+
+    visited[vertex] = true;
+
+    while (queue.length) {
+      let currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+
+    return result;
+  }
+
   #remove(list, element) {
     return list.filter((cc) => cc !== element);
   }
@@ -131,6 +155,8 @@ console.log("=================== ADDING Edge =======================");
 g.addEdge("Luanda", "Bengo");
 g.addEdge("Bengo", "Cuanza Norte");
 g.addEdge("Bengo", "Cuanza Sul");
+g.addEdge("Bengo", "Uíge");
+g.addEdge("Bengo", "Zaire");
 g.addEdge("Cuanza Norte", "Cuanza Sul");
 g.addEdge("Cuanza Norte", "Malanje");
 g.addEdge("Cuanza Sul", "Benguela");
@@ -160,6 +186,10 @@ g.dfs("Luanda");
 
 console.log("=================== RECURSIVE DFS =======================\n");
 let result = g.dfsRecursive("Luanda");
+console.log(result);
+
+console.log("=================== BFS =======================\n");
+result = g.bfs("Luanda");
 console.log(result);
 
 console.log("\n=================== REMOVE Edge =======================");
