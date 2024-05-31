@@ -12,8 +12,10 @@ function maxSubarraySum(arr, k) {
     maxValue += arr[i];
   }
 
+  let total = maxValue;
+
   for (; i < arr.length; i++) {
-    let total = maxValue - arr[i - k] + arr[i];
+    total += arr[i] - arr[i - k];
 
     maxValue = Math.max(total, maxValue);
   }
