@@ -97,6 +97,22 @@ class SinglyLinkedList {
     node.value = value;
     return true;
   }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+
+    if (index === 0) return !!this.unshift(value);
+    if (index === this.length) return !!this.push(value);
+
+    const newnode = new Node(value);
+    const prev = this.get(index - 1);
+
+    newnode.next = prev.next;
+    prev.next = newnode;
+    this.length++;
+
+    return true;
+  }
 }
 
 const llist = new SinglyLinkedList();
