@@ -64,6 +64,18 @@ class SinglyLinkedList {
 
     return this;
   }
+
+  shift() {
+    if (!this.length) return undefined;
+
+    let removedNode = this.head;
+    this.head = this.head.next;
+    this.length--;
+
+    if (!this.length) this.tail = null;
+
+    return removedNode;
+  }
 }
 
 const llist = new SinglyLinkedList();
@@ -88,4 +100,8 @@ llist.push("second");
 llist.push("third");
 
 llist.unshift("new_fist");
+console.log(llist);
+
+console.log("===================== Shift ===================");
+llist.shift();
 console.log(llist);
