@@ -69,12 +69,24 @@ class SinglyLinkedList {
     if (!this.length) return undefined;
 
     let removedNode = this.head;
+    removedNode.next = null;
+
     this.head = this.head.next;
     this.length--;
 
     if (!this.length) this.tail = null;
 
     return removedNode;
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let current = this.head;
+
+    for (let i = 0; i < index; i++) current = current.next;
+
+    return current;
   }
 }
 
