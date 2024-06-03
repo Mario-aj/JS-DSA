@@ -52,6 +52,18 @@ class SinglyLinkedList {
 
     return current;
   }
+
+  unshift(value) {
+    if (!this.head) return this.push(value);
+
+    const node = new SinglyLinkedListNode(value);
+
+    node.next = this.head;
+    this.head = node;
+    this.length++;
+
+    return this;
+  }
 }
 
 const llist = new SinglyLinkedList();
@@ -69,3 +81,11 @@ console.log(llist);
 llist.pop();
 console.log(llist);
 llist.pop();
+
+console.log("===================== Unshift ===================");
+llist.push("first");
+llist.push("second");
+llist.push("third");
+
+llist.unshift("new_fist");
+console.log(llist);
