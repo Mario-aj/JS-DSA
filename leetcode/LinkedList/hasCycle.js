@@ -1,94 +1,64 @@
-class SinglyLinkedListNode {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
+/**
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+There is a cycle in a linked list if there is some node in the list that can be reached
+again by continuously following the next pointer. Internally, pos is used to denote the
+index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
 
-class SinglyLinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.length = null;
-  }
+Return true if there is a cycle in the linked list. Otherwise, return false.
 
-  insert(value) {
-    const node = new SinglyLinkedListNode(value);
+Example 1:
+  Input: head = [3,2,0,-4], pos = 1
+  Output: true
+  Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
 
-    if (!this.head) {
-      this.head = node;
-    } else {
-      this.tail.next = node;
-    }
+Example 2:
+  Input: head = [1,2], pos = 0
+  Output: true
+  Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
 
-    this.tail = node;
-    this.length++;
-  }
+Example 3:
+  Input: head = [1], pos = -1
+  Output: false
+  Explanation: There is no cycle in the linked list.
+ 
+Constraints:
+  The number of the nodes in the list is in the range [0, 104].
+  -105 <= Node.val <= 105
+  pos is -1 or a valid index in the linked-list.
+ 
+Follow up: Can you solve it using O(1) (i.e. constant) memory?
+ */
 
-  get(position) {
-    if (position < 0 || position >= this.length) return undefined;
-
-    let count = 0;
-
-    let current = this.head;
-
-    while (current) {
-      if (count === position) return current;
-
-      current = current.next;
-      count++;
-    }
-
-    return undefined;
-  }
-
-  makeCicle(position) {
-    if (position < 0 || position >= this.length - 1) return undefined;
-
-    const elementToLink = this.get(position);
-
-    if (!elementToLink) return undefined;
-
-    this.tail.next = elementToLink;
-  }
-}
-
-function hasCicle(head) {
+// Using hash map
+function findLinkedListCycle(head) {
   if (!head || !head.next) return false;
 
-  const hashTable = {};
+  const visitedNodes = new Set();
   let current = head;
 
   while (current) {
-    let currentCopy = { ...current };
+    if (visitedNodes.has(current)) return true;
 
-    currentCopy.next = null;
-
-    if (hashTable[JSON.stringify(currentCopy)]) return true;
-
-    hashTable[JSON.stringify(currentCopy)] = true;
+    visitedNodes.add(current);
     current = current.next;
   }
 
   return false;
 }
 
-const list = new SinglyLinkedList();
+// Using Two Pointers
+function hasCycle(head) {
+  if (!head || !head.next) return false;
 
-list.insert(1);
-list.insert(2);
+  let slowPointer = head;
+  let fastPointer = head;
 
-console.log("\n", hasCicle(list.head), "\n");
+  while (fastPointer && fastPointer.next) {
+    slowPointer = slowPointer.next;
+    fastPointer = fastPointer.next.next;
 
-list.insert(3);
-list.insert(4);
+    if (slowPointer === fastPointer) return true;
+  }
 
-console.log(list);
-console.log("\n", hasCicle(list.head), "\n");
-
-list.makeCicle(1);
-console.log(list);
-
-console.log("======================== Has cicle ========================");
-console.log(hasCicle(list.head));
-console.log(list);
+  return false;
+}
