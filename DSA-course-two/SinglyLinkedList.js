@@ -69,9 +69,8 @@ class SinglyLinkedList {
     if (!this.length) return undefined;
 
     let removedNode = this.head;
-    removedNode.next = null;
-
     this.head = this.head.next;
+    removedNode.next = null;
     this.length--;
 
     if (!this.length) this.tail = null;
@@ -121,13 +120,30 @@ class SinglyLinkedList {
     if (index === this.length - 1) return !!this.pop();
 
     let prev = this.get(index - 1);
-    let removeNode = prev.next;
+    let removedNode = prev.next;
 
-    prev.next = removeNode.next;
-    removeNode.next = null;
+    prev.next = removedNode.next;
+    removedNode.next = null;
     this.length--;
 
-    return removeNode;
+    return removedNode;
+  }
+
+  reverse() {
+    if (!this.head) return undefined;
+
+    let prev = null;
+    let current = this.head;
+
+    while (current) {
+      let next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+
+    this.tail = this.head;
+    this.head = prev;
   }
 }
 
@@ -157,4 +173,8 @@ console.log(llist);
 
 console.log("===================== Shift ===================");
 llist.shift();
+console.log(llist);
+
+console.log("\n===================== REVERSE =====================");
+llist.reverse();
 console.log(llist);
