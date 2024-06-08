@@ -149,32 +149,80 @@ class SinglyLinkedList {
 
 const llist = new SinglyLinkedList();
 
-llist.push("first");
-llist.push("second");
-llist.push("third");
+// llist.push("first");
+// llist.push("second");
+// llist.push("third");
 
+// console.log(llist);
+
+// console.log("======================= POP ======================");
+// llist.pop();
+// llist.pop();
+// console.log(llist);
+// llist.pop();
+// console.log(llist);
+// llist.pop();
+
+// console.log("===================== Unshift ===================");
+// llist.push("first");
+// llist.push("second");
+// llist.push("third");
+
+// llist.unshift("new_fist");
+// console.log(llist);
+
+// console.log("===================== Shift ===================");
+// llist.shift();
+// console.log(llist);
+
+// console.log("\n===================== REVERSE =====================");
+// llist.reverse();
+// console.log(llist);
+
+// llist.push(1);
+// llist.push(4);
+// llist.push(3);
+// llist.push(2);
+// llist.push(5);
+// llist.push(2);
+
+llist.push(2);
+llist.push(1);
+
+function partitionList(head, x) {
+  if (!head) return null;
+
+  let slow = head;
+  let fastPrev = head;
+  let fast = head.next;
+
+  while (fast) {
+    if (fast.value < x) {
+      let d = fast;
+      let fastNext = fast.next;
+
+      if (slow.value >= x) {
+        d.next = slow;
+        slow = d;
+      } else {
+        let slowNext = slow.next;
+        slow.next = d;
+        d.next = slowNext;
+        slow = slow.next;
+      }
+
+      fastPrev.next = fastNext;
+      fast = fastNext;
+    } else {
+      fastPrev = fast;
+      fast = fast.next;
+    }
+  }
+
+  return head;
+}
+console.log("\n\n===================================\n\n");
 console.log(llist);
 
-console.log("======================= POP ======================");
-llist.pop();
-llist.pop();
-console.log(llist);
-llist.pop();
-console.log(llist);
-llist.pop();
-
-console.log("===================== Unshift ===================");
-llist.push("first");
-llist.push("second");
-llist.push("third");
-
-llist.unshift("new_fist");
-console.log(llist);
-
-console.log("===================== Shift ===================");
-llist.shift();
-console.log(llist);
-
-console.log("\n===================== REVERSE =====================");
-llist.reverse();
-console.log(llist);
+console.log("\n\n===================================\n\n");
+console.log(partitionList(llist.head, 2));
