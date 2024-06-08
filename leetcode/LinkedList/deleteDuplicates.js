@@ -39,46 +39,36 @@ class SinglyLinkedList {
 
     console.log(arr);
   }
-}
+  removeDuplicates() {
+    if (!this.head) return null;
 
-var deleteDuplicates = function (head) {
-  if (!head) return;
+    let visitedNodes = new Set();
 
-  let prev = head;
-  let current = head.next;
-  let nxt = current.next;
-  let count = 0;
+    let current = this.head.next;
+    let prev = this.head;
+    visitedNodes.add(prev.value);
 
-  while (current) {
-    if (current.value !== nxt?.value) {
-      if (!count) {
-        prev.next = current;
-        prev = prev.next;
+    while (current) {
+      if (visitedNodes.has(current.value)) {
+        prev.next = current.next;
+        this.length--;
       } else {
-        count = 0;
+        visitedNodes.add(current.value);
+        prev = current;
       }
-    } else {
-      count++;
+
+      current = current.next;
     }
-
-    current = nxt;
-    nxt = current?.next;
   }
-
-  prev.next = null;
-
-  return head;
-};
+}
 
 const ll = new SinglyLinkedList();
 ll.push(1);
 ll.push(2);
 ll.push(3);
-ll.push(3);
+ll.push(2);
+ll.push(1);
 ll.push(4);
-ll.push(4);
-ll.push(5);
 
-deleteDuplicates(ll.head);
-
+ll.removeDuplicates();
 ll.print();
