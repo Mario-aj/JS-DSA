@@ -47,6 +47,22 @@ class DoublyLinkedList {
 
     return temp;
   }
+
+  unshift(value) {
+    const node = new DoublyLInkedListNode(value);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.next = this.head;
+      this.head.prev = node;
+      this.head = node;
+    }
+
+    this.length++;
+    return this;
+  }
 }
 
 const dll = new DoublyLinkedList();
@@ -63,4 +79,8 @@ console.log(dll);
 console.log("======================= POP ========================");
 dll.pop();
 dll.pop();
+console.log(dll);
+
+console.log("===================== UNSHIFT ======================");
+dll.unshift(0);
 console.log(dll);
