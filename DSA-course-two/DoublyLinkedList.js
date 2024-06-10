@@ -63,6 +63,24 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  shift() {
+    if (!this.head) return;
+
+    let temp = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = temp.next;
+      this.head.prev = null;
+      temp.next = null;
+    }
+
+    this.length--;
+
+    return temp;
+  }
 }
 
 const dll = new DoublyLinkedList();
@@ -83,4 +101,8 @@ console.log(dll);
 
 console.log("===================== UNSHIFT ======================");
 dll.unshift(0);
+console.log(dll);
+
+console.log("===================== SHIFT ======================");
+dll.shift();
 console.log(dll);
