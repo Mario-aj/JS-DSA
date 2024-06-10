@@ -58,48 +58,46 @@ class LinkedList {
   space complexity: O (n)
  */
 function mergeTwoList(list1, list2) {
-  if (!list1 && !list2) return null;
-  if (!list1 && list2) return list2;
-  if (!list2 && list1) return list1;
-
-  let s1 = list1;
-  let s2 = list2;
   let newList = null;
   let newListCurrent = newList;
 
-  while (s1 && s2) {
-    if (s1.value > s2.value) {
+  while (list1 && list2) {
+    if (list1.value > list2.value) {
       if (!newList) {
-        newList = s2;
+        newList = list2;
         newListCurrent = newList;
       } else {
-        newListCurrent.next = s2;
+        newListCurrent.next = list2;
         newListCurrent = newListCurrent.next;
       }
-      s2 = s2.next;
+      list2 = list2.next;
     } else {
       if (!newList) {
-        newList = s1;
+        newList = list1;
         newListCurrent = newList;
       } else {
-        newListCurrent.next = s1;
+        newListCurrent.next = list1;
         newListCurrent = newListCurrent.next;
       }
 
-      s1 = s1.next;
+      list1 = list1.next;
     }
   }
 
-  while (s1) {
-    newListCurrent.next = s1;
-    newListCurrent = newListCurrent.next;
-    s1 = s1.next;
+  if (list1) {
+    if (!newList) {
+      newList = list1;
+    } else {
+      newListCurrent.next = list1;
+    }
   }
 
-  while (s2) {
-    newListCurrent.next = s2;
-    newListCurrent = newListCurrent.next;
-    s2 = s2.next;
+  if (list2) {
+    if (!newList) {
+      newList = list2;
+    } else {
+      newListCurrent.next = list2;
+    }
   }
 
   return newList;
