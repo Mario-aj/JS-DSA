@@ -130,6 +130,28 @@ class DoublyLinkedList {
 
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return;
+
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    // null <== 1 <=> 2 <=> 3 <=> 4 => null
+    let temp = this.get(index);
+    let before = temp.prev;
+    let after = temp.next;
+
+    // null <== 1 <=> 2 <=> 4 => null
+    before.next = after;
+    after.prev = before;
+
+    temp.next = null;
+    temp.prev = null;
+
+    this.length--;
+    return temp;
+  }
 }
 
 const dll = new DoublyLinkedList();
@@ -158,4 +180,8 @@ console.log(dll);
 
 console.log("===================== INSERT ======================");
 dll.insert(2, 100);
-console.log(dll.head.next.next);
+console.log(dll.head.next);
+
+console.log("===================== REMOVE ======================");
+dll.remove(2);
+console.log(dll.head.next);
