@@ -101,6 +101,15 @@ class DoublyLinkedList {
 
     return temp;
   }
+  set(index, value) {
+    const target = get(index);
+
+    if (!target) return false;
+
+    target.value = value;
+
+    return true;
+  }
 }
 
 const dll = new DoublyLinkedList();
