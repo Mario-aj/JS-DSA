@@ -81,6 +81,26 @@ class DoublyLinkedList {
 
     return temp;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return;
+
+    let temp;
+
+    if (index <= this.length / 2) {
+      temp = this.head;
+      for (let i = 0; i < index; i++) {
+        temp = temp.next;
+      }
+    } else {
+      temp = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        temp = temp.next;
+      }
+    }
+
+    return temp;
+  }
 }
 
 const dll = new DoublyLinkedList();
