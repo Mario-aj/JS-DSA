@@ -53,7 +53,7 @@ class LinkedList {
 }
 
 /**
- * solution idea: Using merge function of merge sort algorithm.
+  solution idea: Using merge function of merge sort algorithm.
   time complexity:  O (n + m)
   space complexity: O (n)
  */
