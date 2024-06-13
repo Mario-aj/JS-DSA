@@ -178,35 +178,30 @@ const dll = new DoublyLinkedList();
 
 dll.push(1);
 dll.push(2);
-dll.reverse();
+dll.push(3);
+dll.push(4);
+dll.push(5);
+dll.push(5);
+
 console.log(dll);
 
-// dll.push(1);
-// dll.push(2);
-// dll.push(3);
-// dll.push(4);
-// dll.push(5);
-// dll.push(5);
+console.log("======================= POP ========================");
+dll.pop();
+dll.pop();
+console.log(dll);
 
-// console.log(dll);
+console.log("===================== UNSHIFT ======================");
+dll.unshift(0);
+console.log(dll);
 
-// console.log("======================= POP ========================");
-// dll.pop();
-// dll.pop();
-// console.log(dll);
+console.log("===================== SHIFT ======================");
+dll.shift();
+console.log(dll);
 
-// console.log("===================== UNSHIFT ======================");
-// dll.unshift(0);
-// console.log(dll);
+console.log("===================== INSERT ======================");
+dll.insert(2, 100);
+console.log(dll.head.next);
 
-// console.log("===================== SHIFT ======================");
-// dll.shift();
-// console.log(dll);
-
-// console.log("===================== INSERT ======================");
-// dll.insert(2, 100);
-// console.log(dll.head.next);
-
-// console.log("===================== REMOVE ======================");
-// dll.remove(2);
-// console.log(dll.head.next);
+console.log("===================== REMOVE ======================");
+dll.remove(2);
+console.log(dll.head.next);
