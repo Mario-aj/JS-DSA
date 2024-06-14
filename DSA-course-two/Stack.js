@@ -24,10 +24,30 @@ class Stack {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (!this.length) return;
+
+    let removedNode = this.top;
+    this.top = this.top.next;
+    removedNode.next = null;
+
+    this.length--;
+
+    return removedNode;
+  }
 }
 
 const stack = new Stack();
 
+console.log("====================== PUSH ======================");
 stack.push(1);
 stack.push(2);
 stack.push(3);
+console.log(stack);
+
+console.log("====================== POP ======================");
+stack.pop();
+console.log(stack);
+stack.pop();
+console.log(stack);
