@@ -20,7 +20,7 @@ class BinarySearchTree {
 
     let temp = this.root;
 
-    while (temp) {
+    while (true) {
       if (temp.value > value) {
         if (!temp.left) {
           temp.left = node;
@@ -38,6 +38,25 @@ class BinarySearchTree {
       }
     }
   }
+  makeEmpty() {
+    this.root = null;
+  }
+
+  search(value) {
+    if (!this.root) return false;
+
+    let temp = this.root;
+
+    while (temp) {
+      if (value < temp.value) {
+        temp = temp.left;
+      } else if (value > temp.value) {
+        temp = temp.right;
+      } else return true;
+    }
+
+    return false;
+  }
 }
 
 const myBST = new BinarySearchTree();
@@ -49,3 +68,8 @@ console.log(myBST);
 
 myBST.insert(43);
 console.log(myBST);
+
+console.log("================== CONTAINS ========================");
+console.log(myBST.search(25));
+console.log(myBST.search(26));
+console.log(myBST.search(45));
