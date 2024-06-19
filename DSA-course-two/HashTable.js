@@ -26,12 +26,31 @@ class HashTable {
 
     return this;
   }
+
+  get(key) {
+    const index = this._hash(key);
+
+    if (this.dataMap[index]) {
+      const data = this.dataMap[index];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i][0] === key) return data[i][1];
+      }
+    }
+
+    return undefined;
+  }
 }
 
 const myHash = new HashTable();
 
+console.log("====================== SET =======================");
 myHash.set("lumber", 70);
 myHash.set("washers", 50);
 myHash.set("bolts", 1400);
 
 console.log(myHash.dataMap);
+
+console.log("\n====================== SET =======================");
+console.log(myHash.get("kdjlaskdjalksd"));
+console.log(myHash.get("washers"));
+console.log(myHash.get("lumber"));
