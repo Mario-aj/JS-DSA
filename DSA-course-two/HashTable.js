@@ -39,6 +39,22 @@ class HashTable {
 
     return undefined;
   }
+
+  keys() {
+    const allKeys = [];
+
+    for (let i = 0; i < this.dataMap.length; i++) {
+      const data = this.dataMap[i];
+
+      if (data) {
+        for (let j = 0; j < data.length; j++) {
+          allKeys.push(data[j][0]);
+        }
+      }
+    }
+
+    return allKeys;
+  }
 }
 
 const myHash = new HashTable();
@@ -50,7 +66,10 @@ myHash.set("bolts", 1400);
 
 console.log(myHash.dataMap);
 
-console.log("\n====================== SET =======================");
+console.log("\n====================== GET =======================");
 console.log(myHash.get("kdjlaskdjalksd"));
 console.log(myHash.get("washers"));
 console.log(myHash.get("lumber"));
+
+console.log("\n====================== KEYS =======================");
+console.log(myHash.keys());
