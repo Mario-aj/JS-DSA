@@ -3,7 +3,7 @@ class HashTable {
     this.dataMap = new Array(size);
   }
 
-  #hash(key = "") {
+  _hash(key = "") {
     let hash = 0;
     let BIG_PRIME_NUMBER = 35;
 
