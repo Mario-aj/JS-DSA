@@ -33,6 +33,18 @@ class Graph {
 
     return false;
   }
+
+  removeVertex(vertex) {
+    if (!this.adjacencyList[vertex]) return false;
+
+    this.adjacencyList[vertex].forEach((element) => {
+      this.removeEdge(vertex, element);
+    });
+
+    delete this.adjacencyList[vertex];
+
+    return true;
+  }
 }
 
 const graph = new Graph();
@@ -40,12 +52,18 @@ const graph = new Graph();
 graph.addVertex("A");
 graph.addVertex("B");
 graph.addVertex("C");
+graph.addVertex("D");
 console.log(graph);
 
 graph.addEdge("A", "B");
 graph.addEdge("A", "C");
-graph.addEdge("B", "C");
+graph.addEdge("D", "A");
+graph.addEdge("D", "B");
+graph.addEdge("D", "C");
 console.log(graph);
 
-graph.removeEdge("A", "B");
-console.log(graph);
+// graph.removeEdge("A", "B");
+// console.log(graph);
+
+graph.removeVertex("D");
+console.log(graph.adjacencyList);
