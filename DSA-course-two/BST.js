@@ -57,6 +57,16 @@ class BinarySearchTree {
 
     return false;
   }
+
+  rSearch(value, node = this.root) {
+    if (!node) return false;
+
+    if (node.value === value) return true;
+
+    if (node.value > value) return this.rSearch(value, node.left);
+
+    return this.rSearch(value, node.right);
+  }
 }
 
 const myBST = new BinarySearchTree();
