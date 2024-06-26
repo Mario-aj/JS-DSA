@@ -90,6 +90,40 @@ class BinarySearchTree {
 
     return currentNode;
   }
+
+  remove(value) {
+    this.root = this.#remove(value, this.root);
+  }
+
+  #remove(value, currentNode) {
+    if (!currentNode) return null;
+
+    if (currentNode.value > value) {
+      currentNode.left = this.#remove(value, currentNode.left);
+    } else if (currentNode.value < value) {
+      currentNode.right = this.#remove(value, currentNode.right);
+    } else {
+      if (!currentNode.left && !currentNode.right) return null;
+
+      if (!currentNode.right) return currentNode.left;
+      if (!currentNode.left) return currentNode.right;
+
+      let subTreeMinValue = this.#findMinValueOfSubTree(currentNode.right);
+
+      currentNode.value = subTreeMinValue;
+      currentNode.right = this.#remove(subTreeMinValue, currentNode.right);
+    }
+
+    return currentNode;
+  }
+
+  #findMinValueOfSubTree(node) {
+    while (node.left) {
+      node = node.left;
+    }
+
+    return node.value;
+  }
 }
 
 const myBST = new BinarySearchTree();
@@ -112,5 +146,38 @@ myBST.makeEmpty();
 myBST.rInsert(45);
 myBST.rInsert(50);
 myBST.rInsert(25);
-myBST.rInsert(4);
-console.log(myBST);
+myBST.rInsert(15);
+myBST.rInsert(2);
+console.log(myBST.root);
+
+console.log(
+  "========================== REMOVE LEAF NODE ========================"
+);
+myBST.remove(2);
+console.log(myBST.root);
+
+console.log(
+  "========================== REMOVE NODE WITH LEFT CHILD ========================"
+);
+myBST.remove(25);
+console.log(myBST.root);
+
+console.log(
+  "========================== REMOVE NODE WITH RIGHT CHILD ========================"
+);
+myBST.rInsert(23);
+console.log(myBST.root);
+myBST.remove(15);
+console.log(myBST.root);
+
+console.log(
+  "========================== REMOVE NODE WITH BITH LEFT AND RIGHT ========================"
+);
+myBST.rInsert(60);
+myBST.rInsert(58);
+myBST.rInsert(75);
+myBST.rInsert(47);
+myBST.rInsert(48);
+myBST.rInsert(46);
+myBST.remove(50);
+console.log(myBST.root);
