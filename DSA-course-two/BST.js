@@ -144,6 +144,21 @@ class BinarySearchTree {
 
     return result;
   }
+
+  dfsPreOrder() {
+    if (!this.root) return;
+    let results = [];
+    function traverse(node) {
+      results.push(node.value);
+
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(this.root);
+
+    return results;
+  }
 }
 
 const myBST = new BinarySearchTree();
