@@ -160,6 +160,22 @@ class BinarySearchTree {
     return results;
   }
 
+  dfsInOrder() {
+    if (!this.root) return undefined;
+
+    let results = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      results.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(this.root);
+
+    return results;
+  }
+
   dfsPostOrder() {
     if (!this.root) return;
     let results = [];
