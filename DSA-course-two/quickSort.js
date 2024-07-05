@@ -19,6 +19,16 @@ function pivot(arr, pivotIndex = 0, maxIdx = arr.length - 1) {
   return swapIndex;
 }
 
-const arr = [4, 1, 6, 7, 3, 2, 5];
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    const pivotIndex = pivot(arr, left, right);
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right);
+  }
 
-console.log(pivot(arr, 0, arr.length - 1));
+  return arr;
+}
+
+const arr = [4, 1, 6, 7, 3, 2, 5];
+const sorted = quickSort(arr);
+console.log(sorted);
